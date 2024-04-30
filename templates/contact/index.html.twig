@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_description %} Contactez l'Académie WS pour toute question concernant l'univers de la formation digitale.  {% endblock %}
+
+{% block title %}Contactez-nous {{parent()}} {% endblock %}
+
+{% form_theme contactForm 'bootstrap_5_layout.html.twig' %}
+
+
+{% block body %}
+    
+    {{ render(controller('App\\Controller\\NavBarController::index')) }}
+
+<div class="global-layout">
+
+    {% for label, messages in app.flashes(['secondary', 'warning']) %}
+        {% for message in messages %}
+            <div class="col-md-6 mx-auto mt-5">
+                <div class="alert alert-{{ label }}" role="alert">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="row py-5" id="contact">
+        <div class="form-shadow-black relative row col-10 col-sm-10 col-md-6 mx-auto justify-content-center align-items-centerwhite smallBorderRadius p-0 my-5">
+            <div class="form-circle"> </div>
+            {{ form_start(contactForm, {"attr": {"class": "col-md-12 row px-5 py-5 justify-content-center" } }) }}
+                <div class="col-md-12">
+                    <h1 class="text-less-grey h3 mb-3 font-weight-normal text-center">Contactez-nous</h1>
+                </div>
+                {{ form_row(contactForm.firstname) }}
+                {{ form_row(contactForm.lastname) }}
+                {{ form_row(contactForm.email) }}
+                {{ form_row(contactForm.phone) }}
+                {{ form_row(contactForm.object) }}
+                {{ form_row(contactForm.message) }}
+
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="text-less-grey btn btn-secondary mt-4 col-md-6 buttonBorderRadius">Envoyer</button>
+                </div>
+            {{ form_end(contactForm) }}
+
+        </div>
+    
+            <div class="row mx-auto px-5 pt-5 mb-5" id="newsletter">
+
+                <div class="col-md-8">
+                    <h2 class="text-less-grey pt-5 pb-3"> Recevez par email toute l’actualité du digital </h2>
+                    <form method="POST">
+                        <div class="d-flex pb-3">
+                            <input type="text" placeholder="Entrez votre adresse email" class="col-8 newsletter px-5 py-3" name="newsletter" >
+                            <input class="text-less-grey px-3 bg-secondary" type="submit" value="JE M'INSCRIS">
+                        </div>
+                        <div class="d-flex pb-3">
+                            <div class="mx-3">
+                                <input type="radio" id="test1" value="1" name="frequence" checked>
+                                <label class="text-grey" for="test1">Chaque matin</label>
+                            </div>
+                            <div class="mx-3">
+                                <input type="radio" id="test2" value="2" name="frequence">
+                                <label class="text-grey" for="test2">Chaque semaine</label>
+                            </div>
+                        </div>
+                        <p class="col-7 text-grey fst-italic"> En cliquant sur "S'inscrire", vous acceptez les CGU ainsi que notre politique de confidentialité décrivant la finalité des traitements de vos données personnelles. </p>
+                    </form>
+                </div>
+
+                <div class="d-flex col-md-4 align-items-end illustration-part">
+                    <img alt="Abonnez-vous à la newsletter de la réponse numérique" title="Newsletter de la réponse numérique" class="w-100" src="{{ asset('newsletter.webp') }}">
+                </div>
+
+            </div>
+
+            {% include 'footer.html.twig' %}
+
+    </div>
+</div>
+
+
+{% endblock %}

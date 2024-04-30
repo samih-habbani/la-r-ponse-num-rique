@@ -1,0 +1,24 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.lareponsenumerique.fr/sitemap.xml
+
+
+####################################################################################
+
+User-agent: *
+Disallow: /*.jpg
+Disallow: /*.pnh
+Disallow: /*.gif
+Disallow: /uploads/
+Disallow: /factures/
+Disallow: /videos/
+Disallow: /images/
+Disallow: /js/
+Disallow: /styles/
+Disallow: /build/
+Disallow: /fonts/
+Allow: /
